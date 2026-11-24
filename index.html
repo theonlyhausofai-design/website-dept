@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Website Department — $597 Website Refresh</title>
+<meta name="description" content="Your website is losing you money. We fix it for $597. Fast, modern, mobile-first. Book the call.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230A0E1A'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  :root {
+    --sc-canvas:     #0A0E1A;
+    --sc-surface:    #111628;
+    --sc-ink:        #F0EDE8;
+    --sc-ink-soft:   #7A7D8A;
+    --sc-accent:     #3DD9A0;
+    --sc-accent-ink: #0A0E1A;
+    --sc-font-display: "Outfit", system-ui, sans-serif;
+    --sc-font-text:    "Space Grotesk", system-ui, sans-serif;
+  }
+
+  .site-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--sc-4) var(--sc-6);
+    pointer-events: none;
+  }
+  .site-bar > * { pointer-events: auto; }
+
+  .mark {
+    font-family: var(--sc-font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sc-ink);
+    text-decoration: none;
+  }
+
+  .nav-cta {
+    font-family: var(--sc-font-text);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    color: var(--sc-accent-ink);
+    background: var(--sc-accent);
+    padding: 0.5em 1.4em;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.14s var(--sc-ease-out), opacity 0.14s var(--sc-ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-cta:hover { transform: scale(1.03); }
+  }
+  .nav-cta:active { transform: scale(0.97); }
+
+  /* Act 1: claim */
+  .claim {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 0 var(--sc-gutter);
+  }
+  .claim h1 {
+    font-size: clamp(2.4rem, 7vw, 5.6rem);
+    line-height: 1.0;
+    letter-spacing: var(--sc-track-tight, -0.03em);
+    max-width: 14ch;
+    text-wrap: balance;
+  }
+
+  /* Act 2: pain */
+  .pain {
+    padding: var(--sc-section) var(--sc-gutter);
+    max-width: var(--sc-measure, 54ch);
+  }
+  .pain p {
+    font-family: var(--sc-font-display);
+    font-size: clamp(1.3rem, 3.2vw, 2rem);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: var(--sc-ink);
+    margin-bottom: var(--sc-7);
+  }
+  .pain p:last-child { margin-bottom: 0; }
+
+  /* Act 3: fix */
+  .fix-stage {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 0 var(--sc-gutter);
+  }
+  .fix-inner { max-width: 42ch; }
+  .fix-inner h2 {
+    font-size: clamp(2rem, 5.5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: var(--sc-track-tight, -0.025em);
+    margin-bottom: var(--sc-6);
+    text-wrap: balance;
+  }
+  .fix-body {
+    color: var(--sc-ink-soft);
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    max-width: 42ch;
+    line-height: 1.6;
+  }
+
+  /* Act 4: deliverables rail */
+  .rail__lead {
+    min-width: 36vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: var(--sc-8);
+  }
+  .rail__lead h2 {
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--sc-4);
+    text-wrap: balance;
+  }
+  .rail__lead p { color: var(--sc-ink-soft); }
+  .deliverable {
+    min-width: 28vw;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--sc-6);
+    border-left: 1px solid color-mix(in srgb, var(--sc-ink-soft) 30%, transparent);
+  }
+  .deliverable h3 {
+    font-family: var(--sc-font-display);
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--sc-3);
+  }
+  .deliverable p {
+    color: var(--sc-ink-soft);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Act 5: price (PEAK, signature move) */
+  .price-stage {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 0 var(--sc-gutter);
+  }
+  .price-weight {
+    font-family: var(--sc-font-display);
+    font-size: clamp(4rem, 18vw, 14rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--sc-accent);
+    font-weight: calc(100 + var(--sc-p, 0) * 800);
+    will-change: font-weight;
+  }
+  .price-sub {
+    font-family: var(--sc-font-text);
+    font-size: clamp(0.95rem, 2vw, 1.3rem);
+    color: var(--sc-ink-soft);
+    margin-top: var(--sc-6);
+    max-width: 28ch;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+
+  /* Act 6: close */
+  .close {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: var(--sc-section) var(--sc-gutter);
+    min-height: 80vh;
+  }
+  .close__inner { max-width: 36ch; }
+  .close h2 {
+    font-size: clamp(1.6rem, 4.5vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--sc-7);
+    text-wrap: balance;
+  }
+  .cta {
+    display: inline-block;
+    font-family: var(--sc-font-text);
+    font-weight: 600;
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+    letter-spacing: 0.02em;
+    color: var(--sc-accent-ink);
+    background: var(--sc-accent);
+    padding: 0.75em 2.2em;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.14s var(--sc-ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .cta:hover { transform: scale(1.04); }
+  }
+  .cta:active { transform: scale(0.97); }
+  .close-sub {
+    font-size: 0.85rem;
+    color: var(--sc-ink-soft);
+    margin-top: var(--sc-5);
+  }
+  .foot {
+    margin-top: var(--sc-9);
+    font-size: 0.75rem;
+    color: var(--sc-ink-soft);
+    opacity: 0.6;
+  }
+
+  /* Easter egg: excuse machine */
+  .easter {
+    margin-top: var(--sc-9);
+    padding-top: var(--sc-8);
+    border-top: 1px solid color-mix(in srgb, var(--sc-ink-soft) 15%, transparent);
+    text-align: center;
+  }
+  .easter-label {
+    font-family: var(--sc-font-text);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sc-ink-soft);
+    opacity: 0.5;
+    margin-bottom: var(--sc-4);
+  }
+  .easter-excuse {
+    font-family: var(--sc-font-display);
+    font-size: clamp(1rem, 2.4vw, 1.4rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--sc-ink-soft);
+    min-height: 2.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease;
+  }
+  .easter-tap {
+    display: inline-block;
+    font-family: var(--sc-font-text);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--sc-accent);
+    opacity: 0.6;
+    margin-top: var(--sc-3);
+    cursor: pointer;
+    transition: opacity 0.2s;
+    background: none;
+    border: none;
+    padding: 0.4em 1em;
+  }
+  .easter-tap:hover { opacity: 1; }
+  .easter-excuse.fade { opacity: 0; }
+
+  /* Stats pulse */
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(2rem, 6vw, 5rem);
+    flex-wrap: wrap;
+    padding: 0 var(--sc-gutter);
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--sc-font-display);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--sc-accent);
+  }
+  .stat-label {
+    font-family: var(--sc-font-text);
+    font-size: 0.85rem;
+    color: var(--sc-ink-soft);
+    margin-top: var(--sc-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Glowing dot accent */
+  .glow-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--sc-accent);
+    margin: var(--sc-8) auto;
+    box-shadow: 0 0 20px var(--sc-accent), 0 0 60px color-mix(in srgb, var(--sc-accent) 40%, transparent);
+    animation: pulse-glow 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.6); opacity: 1; box-shadow: 0 0 30px var(--sc-accent), 0 0 80px color-mix(in srgb, var(--sc-accent) 50%, transparent); }
+  }
+
+  /* mobile */
+  @media (max-width: 700px) {
+    .claim h1 { font-size: 2.2rem; max-width: 12ch; }
+    .price-weight { font-size: 4.5rem; }
+    .rail__lead { min-width: 70vw; }
+    .deliverable { min-width: 65vw; }
+  }
+
+  /* reduced motion: show final state, no interpolation */
+  @media (prefers-reduced-motion: reduce) {
+    .price-weight { font-weight: 900; }
+  }
+</style>
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<header class="site-bar">
+  <span class="mark" aria-label="The Website Dept">
+    <svg width="32" height="28" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M10 10 Q10 40 30 55 Q50 70 50 40 Q50 10 70 25 Q90 40 90 70 Q90 90 75 90 Q60 90 60 70 Q60 50 80 35" stroke="var(--sc-ink)" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <circle cx="95" cy="22" r="10" fill="var(--sc-accent)"/>
+    </svg>
+  </span>
+  <a href="https://api.leadconnectorhq.com/widget/bookings/freediscoverycallforyou" class="nav-cta">Book the Call</a>
+</header>
+
+<main id="top">
+
+  <!-- Act 1 · CURIOSITY: pin + kinetic
+       Type at extreme scale on a held frame. Assembles line by line. -->
+  <section data-sc-act="pin" data-sc-span="1.8" data-sc-drift="#0A0E1A">
+    <div data-sc-stage class="claim">
+      <div data-sc-cue="0 0.85 0">
+        <h1 class="sc-display" data-sc-kinetic="lines">Your website is losing you money.</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Act 2 · RECOGNITION: flow + in
+       Pain points fade in with stagger. Natural height. -->
+  <section class="sc-section" data-sc-act="flow" data-sc-drift="#0E1224">
+    <div class="pain" data-sc-in data-sc-stagger="80">
+      <p>Customers google you. They see your site. They leave.</p>
+      <p>Slow pages. Broken links. No clear way to book.</p>
+      <p>Your competitor hired someone. You can tell.</p>
+      <p>Every week it stays like this, it costs you.</p>
+    </div>
+  </section>
+
+  <!-- Act 3 · RELIEF: pin + reveal
+       Pinned frame. The fix wipes in from the left. -->
+  <section data-sc-act="pin" data-sc-span="1.4" data-sc-drift="#0A0E1A">
+    <div data-sc-stage class="fix-stage">
+      <div class="fix-inner">
+        <div data-sc-reveal="left" data-sc-reveal-at="0.08 0.5">
+          <h2 class="sc-display">We fix it. Fast.</h2>
+        </div>
+        <p class="fix-body" data-sc-cue="0.4 0.92">A clean, modern site that loads fast, looks right on every phone, and makes it obvious how to reach you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats · Social proof pulse -->
+  <section class="sc-section" data-sc-act="flow" data-sc-drift="#0E1224">
+    <div style="display:grid;place-items:center;min-height:60vh;">
+      <div>
+        <div class="glow-dot" data-sc-in></div>
+        <div class="stats-row" data-sc-in data-sc-stagger="120">
+          <div class="stat">
+            <div class="stat-num">14</div>
+            <div class="stat-label">Days to launch</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">$0</div>
+            <div class="stat-label">Monthly fees</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Yours to keep</div>
+          </div>
+        </div>
+        <div class="glow-dot" data-sc-in></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Act 4 · CONFIDENCE: pan (deliverables rail)
+       Lateral travel = options. One vh per item plus one. -->
+  <section data-sc-act="pan" data-sc-span="2.8" data-sc-drift="#111628">
+    <div data-sc-stage>
+      <div class="rail" data-sc-pan="0.06">
+        <div class="rail__lead sc-stack">
+          <h2 class="sc-display">What $597 buys&nbsp;you.</h2>
+          <p class="sc-body">Everything your site needs. Nothing it doesn't.</p>
+        </div>
+        <article class="deliverable">
+          <h3>Modern design</h3>
+          <p>Mobile-first. Built for the phones your customers actually use.</p>
+        </article>
+        <article class="deliverable">
+          <h3>Fast pages</h3>
+          <p>Every page loads quickly, on every device.</p>
+        </article>
+        <article class="deliverable">
+          <h3>Working forms</h3>
+          <p>Contact forms, booking links, click-to-call. All connected.</p>
+        </article>
+        <article class="deliverable">
+          <h3>Clear actions</h3>
+          <p>Visitors know exactly what to do next. No guessing.</p>
+        </article>
+        <article class="deliverable">
+          <h3>SEO basics</h3>
+          <p>Titles, descriptions, speed, structure. Done right from day one.</p>
+        </article>
+        <article class="deliverable">
+          <h3>Done in 14 days</h3>
+          <p>From kickoff call to live site. Two weeks, not two months.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Act 5 · SURPRISE (PEAK): pin + signature move
+       $597 at massive scale. Font weight interpolates 100→900 via --sc-p.
+       Largest span on the page. Silence before it (act 4 is calm). -->
+  <section data-sc-act="pin" data-sc-span="3.8" data-sc-drift="#0A0E1A">
+    <div data-sc-stage class="price-stage">
+      <div>
+        <p class="price-weight" data-sc-cue="0.05 0.92 0" aria-label="Five hundred and ninety-seven dollars">$597</p>
+        <p class="price-sub" data-sc-cue="0.3 0.95">Not thousands. Not monthly.<br>One price. Done.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Act 6 · RESOLVE: flow + pointer
+       The page stops scrolling and starts responding.
+       Footer inside the section so there is no dead tail. -->
+  <section class="sc-section" data-sc-act="flow" data-sc-drift="#0A0E1A">
+    <div class="close" data-sc-spotlight>
+      <div class="close__inner" data-sc-in>
+        <h2 class="sc-display" data-sc-kinetic="lines">Your website should work as hard as you do.</h2>
+        <a id="book" class="cta" href="https://api.leadconnectorhq.com/widget/bookings/freediscoverycallforyou" data-sc-magnet="0.22">Book the Call</a>
+        <p class="close-sub">30 minutes. Free. No pressure.</p>
+      </div>
+      <div class="easter" data-sc-in>
+        <p class="easter-label">Still scrolling instead of booking?</p>
+        <p class="easter-excuse" id="excuse">"I'll fix my website next quarter."</p>
+        <button class="easter-tap" id="excuse-btn" aria-label="Show another excuse">Next excuse</button>
+      </div>
+      <footer class="foot">The Website Dept&trade;</footer>
+    </div>
+  </section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>ScrollCraft.mount(document.body);</script>
+<script>
+(function(){
+  var excuses = [
+    "“I’ll fix my website next quarter.”",
+    "“My nephew said he’d build one for free.”",
+    "“People find us on Facebook anyway.”",
+    "“We’re too busy to deal with a website.”",
+    "“Our current site is fine… we think.”",
+    "“We just need a logo first.”",
+    "“I heard websites are dead. TikTok is everything.”",
+    "“We’ll wait until business slows down.”",
+    "“My cousin knows WordPress.”",
+    "“It worked fine in 2019.”",
+    "“I’m still comparing quotes from 6 months ago.”",
+    "“We get most of our business from referrals.”"
+  ];
+  var i = 0;
+  var el = document.getElementById('excuse');
+  var btn = document.getElementById('excuse-btn');
+  if (!el || !btn) return;
+  btn.addEventListener('click', function(){
+    el.classList.add('fade');
+    setTimeout(function(){
+      i = (i + 1) % excuses.length;
+      el.textContent = excuses[i];
+      el.classList.remove('fade');
+    }, 400);
+  });
+})();
+</script>
+</body>
+</html>
