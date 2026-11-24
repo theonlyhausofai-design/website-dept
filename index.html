@@ -312,12 +312,123 @@
     50% { transform: scale(1.6); opacity: 1; box-shadow: 0 0 30px var(--sc-accent), 0 0 80px color-mix(in srgb, var(--sc-accent) 50%, transparent); }
   }
 
+  /* Intake form */
+  .intake {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: var(--sc-section) var(--sc-gutter);
+    min-height: 80vh;
+  }
+  .intake__inner {
+    max-width: 480px;
+    width: 100%;
+  }
+  .intake h2 {
+    font-size: clamp(1.6rem, 4.5vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--sc-4);
+    text-wrap: balance;
+  }
+  .intake-sub {
+    color: var(--sc-ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: var(--sc-8);
+  }
+  .intake-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sc-4);
+    text-align: left;
+  }
+  .intake-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .intake-field label {
+    font-family: var(--sc-font-text);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sc-ink-soft);
+  }
+  .intake-field input,
+  .intake-field textarea {
+    font-family: var(--sc-font-text);
+    font-size: 1rem;
+    color: var(--sc-ink);
+    background: color-mix(in srgb, var(--sc-surface) 80%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sc-ink-soft) 25%, transparent);
+    border-radius: 4px;
+    padding: 0.75em 1em;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .intake-field input:focus,
+  .intake-field textarea:focus {
+    border-color: var(--sc-accent);
+  }
+  .intake-field input::placeholder,
+  .intake-field textarea::placeholder {
+    color: color-mix(in srgb, var(--sc-ink-soft) 50%, transparent);
+  }
+  .intake-field textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  .intake-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sc-4);
+  }
+  .intake-submit {
+    display: inline-block;
+    font-family: var(--sc-font-text);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    color: var(--sc-accent-ink);
+    background: var(--sc-accent);
+    padding: 0.85em 2em;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-top: var(--sc-4);
+    transition: transform 0.14s var(--sc-ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .intake-submit:hover { transform: scale(1.03); }
+  }
+  .intake-submit:active { transform: scale(0.97); }
+  .intake-success {
+    display: none;
+    text-align: center;
+    padding: var(--sc-8) 0;
+  }
+  .intake-success.show {
+    display: block;
+  }
+  .intake-success h3 {
+    font-family: var(--sc-font-display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--sc-accent);
+    margin-bottom: var(--sc-4);
+  }
+  .intake-success p {
+    color: var(--sc-ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
   /* mobile */
   @media (max-width: 700px) {
     .claim h1 { font-size: 2.2rem; max-width: 12ch; }
     .price-weight { font-size: 4.5rem; }
     .rail__lead { min-width: 70vw; }
     .deliverable { min-width: 65vw; }
+    .intake-row { grid-template-columns: 1fr; }
   }
 
   /* reduced motion: show final state, no interpolation */
@@ -450,6 +561,51 @@
     </div>
   </section>
 
+  <!-- Intake form: Get Started -->
+  <section class="sc-section" data-sc-act="flow" data-sc-drift="#111628">
+    <div class="intake">
+      <div class="intake__inner" data-sc-in data-sc-stagger="60">
+        <h2 class="sc-display">Ready? Tell us about your business.</h2>
+        <p class="intake-sub">Fill this out and we will reach out within 24 hours.</p>
+        <form class="intake-form" id="intake-form" action="https://api.leadconnectorhq.com/widget/bookings/freediscoverycallforyou" method="GET">
+          <div class="intake-row">
+            <div class="intake-field">
+              <label for="f-name">Your name</label>
+              <input type="text" id="f-name" name="name" placeholder="Jane Smith" required>
+            </div>
+            <div class="intake-field">
+              <label for="f-biz">Business name</label>
+              <input type="text" id="f-biz" name="business" placeholder="Smith HVAC">
+            </div>
+          </div>
+          <div class="intake-row">
+            <div class="intake-field">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" name="email" placeholder="jane@smithhvac.com" required>
+            </div>
+            <div class="intake-field">
+              <label for="f-phone">Phone</label>
+              <input type="tel" id="f-phone" name="phone" placeholder="(555) 123-4567">
+            </div>
+          </div>
+          <div class="intake-field">
+            <label for="f-site">Current website (if you have one)</label>
+            <input type="url" id="f-site" name="website" placeholder="https://smithhvac.com">
+          </div>
+          <div class="intake-field">
+            <label for="f-goals">What do you need most?</label>
+            <textarea id="f-goals" name="goals" placeholder="More calls, better design, mobile-friendly, booking system..."></textarea>
+          </div>
+          <button type="submit" class="intake-submit">Get My Free Consultation</button>
+        </form>
+        <div class="intake-success" id="intake-success">
+          <h3>Got it. We will be in touch.</h3>
+          <p>Check your inbox within 24 hours. We will send next steps and schedule your free discovery call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Act 6 · RESOLVE: flow + pointer
        The page stops scrolling and starts responding.
        Footer inside the section so there is no dead tail. -->
@@ -500,6 +656,31 @@
       el.textContent = excuses[i];
       el.classList.remove('fade');
     }, 400);
+  });
+})();
+</script>
+<script>
+(function(){
+  var form = document.getElementById('intake-form');
+  var success = document.getElementById('intake-success');
+  if (!form || !success) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var data = new FormData(form);
+    var obj = {};
+    data.forEach(function(v, k){ obj[k] = v; });
+
+    // Send to GHL webhook (replace URL with your actual webhook)
+    // For now stores in localStorage and shows success
+    try {
+      var leads = JSON.parse(localStorage.getItem('twd_leads') || '[]');
+      obj.submitted = new Date().toISOString();
+      leads.push(obj);
+      localStorage.setItem('twd_leads', JSON.stringify(leads));
+    } catch(err){}
+
+    form.style.display = 'none';
+    success.classList.add('show');
   });
 })();
 </script>
