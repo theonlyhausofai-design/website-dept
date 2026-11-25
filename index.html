@@ -670,14 +670,13 @@
     var obj = {};
     data.forEach(function(v, k){ obj[k] = v; });
 
-    // Send to GHL webhook (replace URL with your actual webhook)
-    // For now stores in localStorage and shows success
-    try {
-      var leads = JSON.parse(localStorage.getItem('twd_leads') || '[]');
-      obj.submitted = new Date().toISOString();
-      leads.push(obj);
-      localStorage.setItem('twd_leads', JSON.stringify(leads));
-    } catch(err){}
+    obj.submitted = new Date().toISOString();
+
+    fetch('https://services.leadconnectorhq.com/hooks/3WjEA1Wvy6Le7wueUHsR/webhook-trigger/undefined', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(obj)
+    }).catch(function(){});
 
     form.style.display = 'none';
     success.classList.add('show');
