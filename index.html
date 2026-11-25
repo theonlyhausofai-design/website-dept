@@ -444,9 +444,9 @@
 
 <header class="site-bar">
   <span class="mark" aria-label="The Website Dept">
-    <svg width="32" height="28" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M10 10 Q10 40 30 55 Q50 70 50 40 Q50 10 70 25 Q90 40 90 70 Q90 90 75 90 Q60 90 60 70 Q60 50 80 35" stroke="var(--sc-ink)" stroke-width="18" stroke-linecap="round" fill="none"/>
-      <circle cx="95" cy="22" r="10" fill="var(--sc-accent)"/>
+    <svg width="34" height="30" viewBox="0 0 140 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 12 C12 32, 20 52, 36 62 C48 70, 52 60, 52 44 C52 28, 52 16, 64 16 C76 16, 76 28, 76 44 C76 60, 80 70, 92 62 C108 52, 116 32, 116 12" stroke="var(--sc-ink)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="112" cy="24" r="11" fill="var(--sc-accent)"/>
     </svg>
   </span>
   <a href="https://api.leadconnectorhq.com/widget/bookings/freediscoverycallforyou" class="nav-cta">Book the Call</a>
@@ -670,16 +670,17 @@
     var obj = {};
     data.forEach(function(v, k){ obj[k] = v; });
 
-    obj.submitted = new Date().toISOString();
-
-    fetch('https://services.leadconnectorhq.com/hooks/3WjEA1Wvy6Le7wueUHsR/webhook-trigger/undefined', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(obj)
-    }).catch(function(){});
+    var bookingUrl = 'https://api.leadconnectorhq.com/widget/bookings/freediscoverycallforyou';
+    var params = new URLSearchParams();
+    if (obj.name) params.set('name', obj.name);
+    if (obj.email) params.set('email', obj.email);
+    if (obj.phone) params.set('phone', obj.phone);
+    var dest = bookingUrl + '?' + params.toString();
 
     form.style.display = 'none';
     success.classList.add('show');
+
+    setTimeout(function(){ window.open(dest, '_blank'); }, 1500);
   });
 })();
 </script>
